@@ -7,8 +7,6 @@ import { BiMenuAltLeft, BiSolidBell } from "react-icons/bi";
 import { IoIosArrowBack } from "react-icons/io";
 import useWindowSize from "../components/hooks/useWindowSize";
 import { BsArrowRightShort } from "react-icons/bs";
-
-import { Column } from "@ant-design/plots";
 export default function Home() {
     const [sider, setSider] = useState(false);
 
