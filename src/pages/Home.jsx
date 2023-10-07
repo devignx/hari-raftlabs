@@ -7,7 +7,23 @@ import { BiMenuAltLeft, BiSolidBell } from "react-icons/bi";
 import { IoIosArrowBack } from "react-icons/io";
 import useWindowSize from "../components/hooks/useWindowSize";
 import { BsArrowRightShort } from "react-icons/bs";
+import { Dropdown, Space, Select } from "antd";
+
 export default function Home() {
+    const items = [
+        {
+            label: <p>More Info</p>,
+            key: "0",
+        },
+        {
+            type: "divider",
+        },
+        {
+            label: <p>Settings</p>,
+            key: "1",
+        },
+    ];
+
     const [sider, setSider] = useState(false);
 
     const windowWidth = useWindowSize();
@@ -67,15 +83,23 @@ export default function Home() {
                         <button className="w-12 h-12 hover:text-primary anim flex justify-center items-center rounded-full bg-secondary/50">
                             <FiSearch />
                         </button>
+
                         <button className="w-12 relative h-12 hover:text-primary anim flex justify-center items-center rounded-full bg-secondary/50">
                             <BiSolidBell />
                             <div className="absolute rounded-full bg-primary text-white text-xs w-3 h-3 scale-75 md:scale-90 top-0 right-1"></div>
                         </button>
-                        <div className="flex hover:text-primary anim cursor-pointer gap-1 items-center px-4 p-3 grow bg-white drop-shadow-md rounded-full ">
-                            <FaUser className="mr-1" />
-                            Johnson
-                            <MdOutlineKeyboardArrowDown className="ml-2" />
-                        </div>
+                        <Dropdown menu={{ items }}>
+                            <button
+                                className="opacity-80"
+                                onClick={(e) => e.preventDefault()}
+                            >
+                                <div className="flex hover:text-primary anim cursor-pointer gap-1 items-center px-4 p-3 grow bg-white drop-shadow-md rounded-full ">
+                                    <FaUser className="mr-1" />
+                                    Johnson
+                                    <MdOutlineKeyboardArrowDown className="ml-2" />
+                                </div>
+                            </button>
+                        </Dropdown>
                     </div>
                 </div>
                 <div className=" flex flex-wrap lg:flex-nowrap gap-12 mt-12">
@@ -94,11 +118,20 @@ export default function Home() {
                         <div className="border p-8 mt-6 rounded-xl w-full min-h-[10rem]">
                             <div>
                                 <h1 className="text-2xl">Total Sales & Cost</h1>
-                                <p className="opacity-50 text-xs mt-2">
-                                    Last 60 Days
-                                </p>
-                                <div className="flex items-center gap-3 mt-16">
-                                    <h1 className="text-primary text-6xl font-black tracking-tighter">
+                                <Dropdown menu={{ items }}>
+                                    <button
+                                        className="opacity-80"
+                                        onClick={(e) => e.preventDefault()}
+                                    >
+                                        <Space className="text-xs mt-2">
+                                            Last 60Days
+                                        </Space>
+                                        <MdOutlineKeyboardArrowDown className="inline ml-2" />
+                                    </button>
+                                </Dropdown>
+
+                                <div className="flex items-end md:items-center gap-3 mt-16">
+                                    <h1 className="text-primary text-6xl font-sans font-bold tracking-tighter">
                                         $399.8K
                                     </h1>
                                     <p className="px-1 h-fit p-0.5 pr-2 inline text-xs rounded-full bg-green-300 font-semibold w-fit text-green-800">
@@ -107,24 +140,95 @@ export default function Home() {
                                     </p>
                                 </div>
                             </div>
-                            <div></div>
+                            <div>
+                                <Space wrap>
+                                    <Select
+                                        defaultValue="lucy"
+                                        style={{ width: 120 }}
+                                        options={[
+                                            { value: "jack", label: "Jack" },
+                                            { value: "lucy", label: "Lucy" },
+                                            {
+                                                value: "Yiminghe",
+                                                label: "yiminghe",
+                                            },
+                                            {
+                                                value: "disabled",
+                                                label: "Disabled",
+                                                disabled: true,
+                                            },
+                                        ]}
+                                    />
+                                    <Select
+                                        defaultValue="lucy"
+                                        style={{ width: 120 }}
+                                        disabled
+                                        options={[
+                                            { value: "lucy", label: "Lucy" },
+                                        ]}
+                                    />
+                                    <Select
+                                        defaultValue="lucy"
+                                        style={{ width: 120 }}
+                                        loading
+                                        options={[
+                                            { value: "lucy", label: "Lucy" },
+                                        ]}
+                                    />
+                                    <Select
+                                        defaultValue="lucy"
+                                        style={{ width: 120 }}
+                                        allowClear
+                                        options={[
+                                            { value: "lucy", label: "Lucy" },
+                                        ]}
+                                    />
+                                </Space>
+                            </div>
                         </div>
                     </div>
                     <div className="w-[30rem]">
                         <p className="text-primary uppercase font-semibold text-xs">
                             Premium Access
                         </p>
-                        <h2 className="text-4xl rounded-xl h-[20vh] mt-2 font-bold">
-                            Take Back <br />
-                            Your Creative
-                            <br /> Control
-                        </h2>
-                        <button className="opacity-50 font-semibold">
-                            The Professional Platform{" "}
-                            <IoIosArrowBack className="inline rotate-[270deg] ml-2" />
+                        <div className="flex items-end">
+                            <h2 className="text-4xl rounded-xl mt-2 font-bold">
+                                Take Back <br />
+                                Your Creative
+                                <br /> Control
+                                <div className="inline-flex ml-3 scale-90 origin-bottom-left">
+                                    <img
+                                        className="w-8  h-8 rounded-full ring-white ring-2"
+                                        src="https://picsum.photos/200/300?random=1"
+                                        alt=""
+                                    />
+                                    <img
+                                        className="w-8 -ml-3 h-8 rounded-full ring-white ring-2"
+                                        src="https://picsum.photos/200/300?random=2"
+                                        alt=""
+                                    />
+                                    <img
+                                        className="w-8 -ml-3 h-8 rounded-full ring-white ring-2"
+                                        src="https://picsum.photos/200/300?random=4"
+                                        alt=""
+                                    />
+                                    <div className="w-8 bg-primary text-white flex justify-center items-center text-xs -ml-3 h-8 rounded-full ring-white ring-2">
+                                        10+
+                                    </div>
+                                </div>
+                            </h2>
+                        </div>
+                        <button className="opacity-50 mt-8 font-semibold">
+                            <Dropdown menu={{ items }}>
+                                <button onClick={(e) => e.preventDefault()}>
+                                    <Space>The Professional Platform</Space>
+                                    <IoIosArrowBack className="inline rotate-[270deg] ml-2" />
+                                </button>
+                            </Dropdown>
                         </button>
-                        <button className="flex text-primary items-center mt-6 w-full justify-between px-4 p-3 border-2 border-primary/30 rounded-xl">
-                            Upgrade Now <BsArrowRightShort />
+                        <button className="flex text-primary items-center mt-6 w-full justify-between px-6 p-3 border-2 border-primary/30 rounded-xl">
+                            Upgrade Now{" "}
+                            <BsArrowRightShort className="text-xl" />
                         </button>
                     </div>
                 </div>
