@@ -8,29 +8,80 @@ import { IoIosArrowBack } from "react-icons/io";
 import useWindowSize from "../components/hooks/useWindowSize";
 import { BsArrowRightShort } from "react-icons/bs";
 import { Dropdown, Space, Select } from "antd";
+import TableData from "../components/table";
+import Sales from "../components/Sales";
+
+const SortOptions = () => {
+    return (
+        <Space wrap>
+            <Select
+                defaultValue="Recipient"
+                style={{ width: 120 }}
+                options={[
+                    {
+                        value: "Recipient",
+                        label: "Recipient",
+                    },
+                    {
+                        value: "Vendor",
+                        label: "Vendor",
+                    },
+                ]}
+            />
+            <Select
+                defaultValue="Amount"
+                style={{ width: 120 }}
+                options={[
+                    {
+                        value: "Amount",
+                        label: "Amount",
+                    },
+                    {
+                        value: "Balance",
+                        label: "Balance",
+                    },
+                ]}
+            />
+            <Select
+                defaultValue="Status"
+                style={{ width: 120 }}
+                options={[
+                    {
+                        value: "Status",
+                        label: "Status",
+                    },
+                    {
+                        value: "Details",
+                        label: "Details",
+                    },
+                ]}
+            />
+        </Space>
+    );
+};
+
+const items = [
+    {
+        label: <p>More Info</p>,
+        key: "0",
+    },
+    {
+        type: "divider",
+    },
+    {
+        label: <p>Settings</p>,
+        key: "1",
+    },
+];
 
 export default function Home() {
-    const items = [
-        {
-            label: <p>More Info</p>,
-            key: "0",
-        },
-        {
-            type: "divider",
-        },
-        {
-            label: <p>Settings</p>,
-            key: "1",
-        },
-    ];
-
     const [sider, setSider] = useState(false);
 
     const windowWidth = useWindowSize();
     const isMobile = windowWidth.width < 768;
 
     return (
-        <div className="flex">
+        <div className="flex min-h-screen">
             <div
                 className={` ${
                     sider || !isMobile
@@ -48,12 +99,14 @@ export default function Home() {
                 </button>
                 <Sider />
             </div>
+
             <div
                 onClick={() => setSider(false)}
                 className={` ${
                     sider ? "backdrop-blur" : " pointer-events-none"
                 }  fixed top-0 mob left-0 toppp h-screen w-screen`}
             />
+
             <section id="main" className="md:p-8 w-11/12 mx-auto md:w-full">
                 <div className="flex mt-6 md:mt-0">
                     <div className="flex flex-row-reverse items-center w-full justify-between md:justify-normal md:flex-row gap-4">
@@ -115,77 +168,24 @@ export default function Home() {
                                 <h1>$3990</h1>
                             </div>
                         </div>
-                        <div className="border p-8 mt-6 rounded-xl w-full min-h-[10rem]">
+                        <Sales />
+                        <div className="mt-6 flex justify-between">
                             <div>
-                                <h1 className="text-2xl">Total Sales & Cost</h1>
-                                <Dropdown menu={{ items }}>
-                                    <button
-                                        className="opacity-80"
-                                        onClick={(e) => e.preventDefault()}
-                                    >
-                                        <Space className="text-xs mt-2">
-                                            Last 60Days
-                                        </Space>
-                                        <MdOutlineKeyboardArrowDown className="inline ml-2" />
-                                    </button>
-                                </Dropdown>
-
-                                <div className="flex items-end md:items-center gap-3 mt-16">
-                                    <h1 className="text-primary text-6xl font-sans font-bold tracking-tighter">
-                                        $399.8K
-                                    </h1>
-                                    <p className="px-1 h-fit p-0.5 pr-2 inline text-xs rounded-full bg-green-300 font-semibold w-fit text-green-800">
-                                        <BsArrowRightShort className="inline -rotate-90 mb-0.5 text-xl" />{" "}
-                                        5.4%
-                                    </p>
-                                </div>
+                                <h1 className="text-2xl mb-6 font-bold opacity-70">
+                                    Transaction History
+                                </h1>
+                                <SortOptions />
                             </div>
-                            <div>
-                                <Space wrap>
-                                    <Select
-                                        defaultValue="lucy"
-                                        style={{ width: 120 }}
-                                        options={[
-                                            { value: "jack", label: "Jack" },
-                                            { value: "lucy", label: "Lucy" },
-                                            {
-                                                value: "Yiminghe",
-                                                label: "yiminghe",
-                                            },
-                                            {
-                                                value: "disabled",
-                                                label: "Disabled",
-                                                disabled: true,
-                                            },
-                                        ]}
-                                    />
-                                    <Select
-                                        defaultValue="lucy"
-                                        style={{ width: 120 }}
-                                        disabled
-                                        options={[
-                                            { value: "lucy", label: "Lucy" },
-                                        ]}
-                                    />
-                                    <Select
-                                        defaultValue="lucy"
-                                        style={{ width: 120 }}
-                                        loading
-                                        options={[
-                                            { value: "lucy", label: "Lucy" },
-                                        ]}
-                                    />
-                                    <Select
-                                        defaultValue="lucy"
-                                        style={{ width: 120 }}
-                                        allowClear
-                                        options={[
-                                            { value: "lucy", label: "Lucy" },
-                                        ]}
-                                    />
-                                </Space>
-                            </div>
+                            <Select
+                                style={{ width: 120 }}
+                                defaultValue={"day"}
+                                options={[
+                                    { value: "day", label: "Day" },
+                                    { value: "month", label: "Month" },
+                                ]}
+                            />
                         </div>
+                        <TableData />
                     </div>
                     <div className="w-[30rem]">
                         <p className="text-primary uppercase font-semibold text-xs">
@@ -198,17 +198,17 @@ export default function Home() {
                                 <br /> Control
                                 <div className="inline-flex ml-3 scale-90 origin-bottom-left">
                                     <img
-                                        className="w-8  h-8 rounded-full ring-white ring-2"
+                                        className="w-8  shrink-0 h-8 rounded-full ring-white ring-2"
                                         src="https://picsum.photos/200/300?random=1"
                                         alt=""
                                     />
                                     <img
-                                        className="w-8 -ml-3 h-8 rounded-full ring-white ring-2"
+                                        className="w-8 shrink-0 -ml-3 h-8 rounded-full ring-white ring-2"
                                         src="https://picsum.photos/200/300?random=2"
                                         alt=""
                                     />
                                     <img
-                                        className="w-8 -ml-3 h-8 rounded-full ring-white ring-2"
+                                        className="w-8 shrink-0 -ml-3 h-8 rounded-full ring-white ring-2"
                                         src="https://picsum.photos/200/300?random=4"
                                         alt=""
                                     />
