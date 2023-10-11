@@ -97,13 +97,6 @@ const data = [
         invoice: "$700",
         date: "12 Dec 2022",
     },
-    {
-        key: "3",
-        customer: "Joe Black",
-        status: "success",
-        invoice: "$2610",
-        date: "8 Nov 2021",
-    },
 ];
 
 export default function TableData() {

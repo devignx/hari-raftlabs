@@ -8,9 +8,13 @@ import { IoIosArrowBack } from "react-icons/io";
 import useWindowSize from "../components/hooks/useWindowSize";
 import { BsArrowRightShort } from "react-icons/bs";
 import { Dropdown, Space, Select } from "antd";
-import TableData from "../components/table";
+import TableData from "../components/Table";
 import Sales from "../components/Sales";
 import QuickDashboard from "../components/QuickDashboard";
+import Meetings from "../components/Meetings";
+import logo from "../assets/logo.svg";
+import CalendarComp from "../components/Calendar";
+import { tr } from "date-fns/locale";
 
 const SortOptions = () => {
     return (
@@ -79,25 +83,27 @@ export default function Home() {
     const [sider, setSider] = useState(false);
 
     const windowWidth = useWindowSize();
-    const isMobile = windowWidth.width < 768;
+    const isSmallScreen = windowWidth.width < 1281;
 
     return (
-        <div className="flex min-h-screen">
+        <div className="flex">
             <div
                 className={` ${
-                    sider || !isMobile
+                    sider || !isSmallScreen
                         ? "opacity-100 translate-x-0 pointer-events-auto"
                         : " opacity-0 -translate-x-full pointer-events-none"
                 } top-0 left-0 topppp shrink-0 bg-white anim ${
-                    isMobile && "fixed"
-                } `}
+                    isSmallScreen && "fixed"
+                }  border min-h-screen `}
             >
-                <button
-                    onClick={() => setSider(false)}
-                    className="p-2 mob bg-primary text-white rounded-full absolute right-0 top-8 translate-x-1/2"
-                >
-                    <IoIosArrowBack />
-                </button>
+                {isSmallScreen && (
+                    <button
+                        onClick={() => setSider(false)}
+                        className="p-2 bg-primary text-white rounded-full absolute right-0 top-8 translate-x-1/2"
+                    >
+                        <IoIosArrowBack />
+                    </button>
+                )}
                 <Sider />
             </div>
 
@@ -105,25 +111,45 @@ export default function Home() {
                 onClick={() => setSider(false)}
                 className={` ${
                     sider ? "backdrop-blur" : " pointer-events-none"
-                }  fixed top-0 mob left-0 toppp h-screen w-screen`}
+                }  fixed shrink top-0 mob left-0 toppp h-screen w-screen`}
             />
 
             <section id="main" className="md:p-8 w-11/12 mx-auto md:w-full">
                 <div className="flex mt-6 md:mt-0">
-                    <div className="flex flex-row-reverse items-center w-full justify-between md:justify-normal md:flex-row gap-4">
+                    <div className="flex flex-row items-start w-full justify-between md:justify-normal md:flex-row gap-4">
+                        {isSmallScreen && (
+                            <button
+                                onClick={() => setSider(!sider)}
+                                className={`font-bold flex text-4xl`}
+                            >
+                                <BiMenuAltLeft />
+                                <h1 className="text-2xl mob ml-2 text-primary font-bold ">
+                                    Omoi
+                                </h1>
+                            </button>
+                        )}
+
                         <button
                             onClick={() => setSider(!sider)}
-                            className="mob order-1 text-4xl"
+                            className="p-2 mr-3 md:p-3 toppp relative shrink-0 bg-secondary w-8 md:w-16 h-8 md:h-16 flex md:hidden justify-center text-xl md:text-2xl text-blue-800 items-center rounded-full ring-2  md:ring-offset-4 ring-primary"
                         >
-                            <BiMenuAltLeft />
-                        </button>
-                        <div className="p-2 mr-3 md:p-3 relative shrink-0 bg-secondary w-8 md:w-16 h-8 md:h-16 flex justify-center text-xl md:text-2xl text-blue-800 items-center rounded-full ring-2  md:ring-offset-4 ring-primary">
                             <FaUser />
                             <div className="absolute rounded-full bg-primary text-white text-xs w-4 md:w-6 h-4 md:h-6 flex justify-center ring-2 ring-white items-center scale-75 md:scale-90 -top-1 -right-1">
                                 3
                             </div>
-                        </div>
-                        <div className="hidden lg:flex flex-col">
+                        </button>
+                        {!isSmallScreen && (
+                            <button
+                                onClick={() => setSider(!sider)}
+                                className="p-2 mr-3 md:p-3 toppp relative shrink-0 bg-secondary w-8 md:w-16 h-8 md:h-16 flex        justify-center text-xl md:text-2xl text-blue-800 items-center rounded-full ring-2  md:ring-offset-4 ring-primary"
+                            >
+                                <FaUser />
+                                <div className="absolute rounded-full bg-primary text-white text-xs w-4 md:w-6 h-4 md:h-6 flex justify-center ring-2 ring-white items-center scale-75 md:scale-90 -top-1 -right-1">
+                                    3
+                                </div>
+                            </button>
+                        )}
+                        <div className="flex pc flex-col">
                             <h1 className="text-xl md:text-3xl -mt-2 md:mt-0 font-bold">
                                 Good Evening Team!
                             </h1>
@@ -133,6 +159,7 @@ export default function Home() {
                             </p>
                         </div>
                     </div>
+
                     <div className="flex pc items-start gap-4">
                         <button className="w-12 h-12 hover:text-primary anim flex justify-center items-center rounded-full bg-secondary/50">
                             <FiSearch />
@@ -156,6 +183,7 @@ export default function Home() {
                         </Dropdown>
                     </div>
                 </div>
+
                 <div className=" flex flex-wrap lg:flex-nowrap gap-12 mt-12">
                     <div className="w-full">
                         <QuickDashboard />
@@ -181,16 +209,17 @@ export default function Home() {
 
                         <TableData />
                     </div>
-                    <div className="w-[30rem]">
-                        <p className="text-primary uppercase font-semibold text-xs">
+
+                    <div className=" w-11/12 mx-auto lg:w-[30rem]">
+                        <p className="text-primary text-center md:text-left uppercase font-semibold text-xs">
                             Premium Access
                         </p>
-                        <div className="flex items-end">
-                            <h2 className="text-4xl rounded-xl mt-2 font-bold">
+                        <div className="flex w-full justify-center md:justify-start items-end">
+                            <h2 className="text-4xl text-center md:text-left rounded-xl mt-2 font-bold">
                                 Take Back <br />
                                 Your Creative
                                 <br /> Control
-                                <div className="inline-flex ml-3 scale-90 origin-bottom-left">
+                                <div className="flex justify-center md:justify-start mt-3 md:mt-0 md:inline-flex ml-3 scale-90 origin-bottom-left">
                                     <img
                                         className="w-8  shrink-0 h-8 rounded-full ring-white ring-2"
                                         src="https://picsum.photos/200/300?random=1"
@@ -212,7 +241,8 @@ export default function Home() {
                                 </div>
                             </h2>
                         </div>
-                        <button className="opacity-50 my-8 font-semibold">
+
+                        <button className="opacity-50 mx-auto md:mx-0 block my-8 font-semibold">
                             <Dropdown menu={{ items }}>
                                 <button onClick={(e) => e.preventDefault()}>
                                     <Space>The Professional Platform</Space>
@@ -220,10 +250,13 @@ export default function Home() {
                                 </button>
                             </Dropdown>
                         </button>
-                        <button className="flex text-primary items-center mt-6 w-full justify-between px-6 p-3 border-2 border-primary/30 rounded-xl">
+
+                        <button className="flex text-primary items-center mt-6 w-full justify-center gap-3 md:justify-between px-6 p-3 border-2 border-primary/30 rounded-xl">
                             Upgrade Now{" "}
                             <BsArrowRightShort className="text-xl" />
                         </button>
+                        <CalendarComp />
+                        <Meetings />
                     </div>
                 </div>
             </section>
