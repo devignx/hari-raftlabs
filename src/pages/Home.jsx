@@ -10,6 +10,7 @@ import { BsArrowRightShort } from "react-icons/bs";
 import { Dropdown, Space, Select } from "antd";
 import TableData from "../components/table";
 import Sales from "../components/Sales";
+import QuickDashboard from "../components/QuickDashboard";
 
 const SortOptions = () => {
     return (
@@ -157,18 +158,10 @@ export default function Home() {
                 </div>
                 <div className=" flex flex-wrap lg:flex-nowrap gap-12 mt-12">
                     <div className="w-full">
-                        <div className="w-full text-white rounded-xl h-fit min-h-[10rem] bg-primary font-bold text-2xl flex justify-evenly items-center gap-6">
-                            <div>
-                                <h1>$3990</h1>
-                            </div>
-                            <div>
-                                <h1>$3990</h1>
-                            </div>
-                            <div>
-                                <h1>$3990</h1>
-                            </div>
-                        </div>
+                        <QuickDashboard />
+
                         <Sales />
+
                         <div className="mt-6 flex justify-between">
                             <div>
                                 <h1 className="text-2xl mb-6 font-bold opacity-70">
@@ -178,13 +171,14 @@ export default function Home() {
                             </div>
                             <Select
                                 style={{ width: 120 }}
-                                defaultValue={"day"}
+                                defaultValue={"month"}
                                 options={[
                                     { value: "day", label: "Day" },
                                     { value: "month", label: "Month" },
                                 ]}
                             />
                         </div>
+
                         <TableData />
                     </div>
                     <div className="w-[30rem]">
@@ -218,7 +212,7 @@ export default function Home() {
                                 </div>
                             </h2>
                         </div>
-                        <button className="opacity-50 mt-8 font-semibold">
+                        <button className="opacity-50 my-8 font-semibold">
                             <Dropdown menu={{ items }}>
                                 <button onClick={(e) => e.preventDefault()}>
                                     <Space>The Professional Platform</Space>

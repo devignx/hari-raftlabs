@@ -8,7 +8,7 @@ const columns = [
         render: (text) => (
             <>
                 <div className="inline-flex group gap-3 items-center scale-90 origin-bottom-left">
-                    <div className="relative">
+                    <div className="relative shrink-0">
                         <img
                             className="w-8 shrink-0  h-8 rounded-full ring-white ring-2"
                             src={`https://picsum.photos/200/300?random=${text}`}
