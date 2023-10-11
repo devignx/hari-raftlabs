@@ -1,7 +1,6 @@
-import { Dropdown, Space, Table } from "antd";
+import { Dropdown, Space } from "antd";
 import { BsArrowRightShort } from "react-icons/bs";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import ChartData from "./Charts";
 
 export default function Sales() {
     const items = [

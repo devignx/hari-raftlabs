@@ -8,13 +8,11 @@ import { IoIosArrowBack } from "react-icons/io";
 import useWindowSize from "../components/hooks/useWindowSize";
 import { BsArrowRightShort } from "react-icons/bs";
 import { Dropdown, Space, Select } from "antd";
-import TableData from "../components/Table";
+import TableData from "../components/DataTable";
 import Sales from "../components/Sales";
 import QuickDashboard from "../components/QuickDashboard";
 import Meetings from "../components/Meetings";
-import logo from "../assets/logo.svg";
 import CalendarComp from "../components/Calendar";
-import { tr } from "date-fns/locale";
 
 const SortOptions = () => {
     return (
