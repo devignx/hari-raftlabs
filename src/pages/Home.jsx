@@ -208,12 +208,12 @@ export default function Home() {
                         <TableData />
                     </div>
 
-                    <div className=" w-11/12 mx-auto lg:w-[30rem]">
-                        <p className="text-primary text-center md:text-left uppercase font-semibold text-xs">
+                    <div className=" w-11/12 mx-auto md:w-fit">
+                        <p className="text-primary text-center lg:text-left uppercase font-semibold text-xs">
                             Premium Access
                         </p>
-                        <div className="flex w-full justify-center md:justify-start items-end">
-                            <h2 className="text-4xl text-center md:text-left rounded-xl mt-2 font-bold">
+                        <div className="flex w-full justify-center lg:justify-start items-end">
+                            <h2 className="text-4xl text-center lg:text-left rounded-xl mt-2 font-bold">
                                 Take Back <br />
                                 Your Creative
                                 <br /> Control
@@ -240,7 +240,7 @@ export default function Home() {
                             </h2>
                         </div>
 
-                        <button className="opacity-50 mx-auto md:mx-0 block my-8 font-semibold">
+                        <button className="opacity-50 mx-auto lg:mx-0 block my-8 font-semibold">
                             <Dropdown menu={{ items }}>
                                 <button onClick={(e) => e.preventDefault()}>
                                     <Space>The Professional Platform</Space>
@@ -249,7 +249,7 @@ export default function Home() {
                             </Dropdown>
                         </button>
 
-                        <button className="flex text-primary items-center mt-6 w-full justify-center gap-3 md:justify-between px-6 p-3 border-2 border-primary/30 rounded-xl">
+                        <button className="flex text-primary items-center mt-6 w-full mx-auto lg:mx-0 md:w-fit xl:w-full justify-center gap-3 md:justify-between px-6 p-3 border-2 border-primary/30 rounded-xl">
                             Upgrade Now{" "}
                             <BsArrowRightShort className="text-xl" />
                         </button>

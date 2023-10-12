@@ -43,7 +43,7 @@ export default function Sider() {
     const [activeTab, setActiveTab] = useState("/");
 
     return (
-        <div className="flex toppppp shrink-0 pr-8 p-3 w-fit flex-col gap-2">
+        <div className="flex toppppp h-screen overflow-y-scroll shrink-0 pr-8 p-3 w-fit flex-col gap-2">
             <div className="flex gap-2 m-4 mb-6">
                 <img className="w-8" src={logo} alt="logo" />
                 <h1 className="text-2xl font-bold ">Omoi</h1>

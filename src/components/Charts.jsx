@@ -1,14 +1,64 @@
-import React from "react";
-import { Chart } from "react-google-charts";
+import React, { PureComponent } from "react";
+import { BarChart, Bar, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 
-export const data = [
-    ["Year", "Sales", "Expenses", "Profit"],
-    ["2014", 1000, 400, 200],
-    ["2015", 1170, 460, 250],
-    ["2016", 660, 1120, 300],
-    ["2017", 1030, 540, 350],
+const data = [
+    {
+        name: "Page A",
+        Profit: 40,
+        Sales: 24,
+        amt: 20,
+    },
+    {
+        name: "Page B",
+        Profit: 30,
+        Sales: 13,
+        amt: 30,
+    },
+    {
+        name: "Page C",
+        Profit: 20,
+        Sales: 98,
+        amt: 10,
+    },
+    {
+        name: "Page D",
+        Profit: 27,
+        Sales: 39,
+        amt: 60,
+    },
+    {
+        name: "Page E",
+        Profit: 18,
+        Sales: 48,
+        amt: 25,
+    },
+    {
+        name: "Page F",
+        Profit: 23,
+        Sales: 38,
+        amt: 33,
+    },
+    {
+        name: "Page G",
+        Profit: 34,
+        Sales: 43,
+        amt: 43,
+    },
 ];
 
-export default function ChartData() {
-    return <Chart chartType="Bar" width={"400px"} data={data} />;
+export default class ChartData extends PureComponent {
+    render() {
+        return (
+            <div className="h-[10rem] lg:w-[20rem] xl:w-[80%]">
+                <ResponsiveContainer width={"100%"}>
+                    <BarChart data={data}>
+                        <YAxis />
+                        <Tooltip />
+                        <Bar dataKey="Sales" fill="#6E62E5" />
+                        <Bar dataKey="Profit" fill="#86EFAC" />
+                    </BarChart>
+                </ResponsiveContainer>
+            </div>
+        );
+    }
 }

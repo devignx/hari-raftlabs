@@ -29,22 +29,20 @@ export default function QuickDashboard() {
                         alt=""
                     />
                     <div>
-                        {" "}
                         <h2 className="opacity-60 text-sm">{item.name}</h2>
                         <div className="flex gap-2 mt-2 items-center">
-                            {" "}
                             <p className="text-2xl font-bold">{item.amt}</p>
                             <p className="text-primary scale-75 origin-bottom-left w-fit bg-white px-1 rounded-full p-0.5 text-xs h-fit font-bold">
                                 {item.percent}
                             </p>
-                        </div>{" "}
+                        </div>
                         <p className="text-sm text-white/70 mt-2">
-                            Previous Month{" "}
-                            <span className="font-bold text-white">
+                            Previous Month
+                            <span className="font-black text-white">
                                 {item.prev}
                             </span>
                         </p>
-                    </div>{" "}
+                    </div>
                 </div>
             ))}
         </div>

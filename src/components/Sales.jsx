@@ -1,6 +1,7 @@
 import { Dropdown, Space } from "antd";
 import { BsArrowRightShort } from "react-icons/bs";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import ChartData from "./Charts";
 
 export default function Sales() {
     const items = [
@@ -19,7 +20,7 @@ export default function Sales() {
 
     return (
         <div>
-            <div className="border flex gap-8 overflow-x-scroll flex-wrap md:flex-nowrap p-8 mt-6 rounded-xl w-full min-h-[10rem]">
+            <div className="border flex justify-between gap-8 overflow-x-scroll flex-wrap md:flex-nowrap p-8 mt-6 rounded-xl w-full min-h-[10rem]">
                 <div>
                     <h1 className="text-2xl">Total Sales & Cost</h1>
                     <Dropdown menu={{ items }}>
@@ -36,16 +37,15 @@ export default function Sales() {
                         <h1 className="text-primary text-5xl font-sans font-bold tracking-tighter">
                             $399.8K
                         </h1>
-                        <p className="px-1 h-fit p-0.5 pr-2 inline text-xs rounded-full bg-green-300 font-semibold w-fit text-green-800">
+                        <p className="px-1 h-fit shrink-0 p-0.5 pr-2 inline text-xs rounded-full bg-green-300 font-semibold w-fit text-green-800">
                             <BsArrowRightShort className="inline -rotate-90 mb-0.5 text-xl" />{" "}
                             5.4%
                         </p>
                     </div>
                 </div>
 
-                <div>
-                    <h1>Analytics</h1>
-                    {/* <ChartData /> */}
+                <div className="text-[0.6rem] w-full">
+                    <ChartData />
                 </div>
             </div>
         </div>

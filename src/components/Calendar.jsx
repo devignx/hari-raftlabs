@@ -45,7 +45,7 @@ const CalendarComp = () => {
     };
 
     return (
-        <div className="my-12 w-full overflow-x-scroll  ">
+        <div className="my-12 w-full overflow-x-scroll p-1  ">
             <div className="flex justify-between my-4 items-center">
                 <h2 className="text-lg font-semibold">
                     {format(currentDate, "MMMM yyyy")}
